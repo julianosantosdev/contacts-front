@@ -53,9 +53,11 @@ button {
 
     --title-size-1: 1rem;
     
-    --font-size-0: 1.25rem
+    --font-size-0: 1.25rem;
     --font-size-1: 1rem;
     --font-size-2: 0.750rem;
+    --font-size-3: 0.650rem;
+
 
     --font-itallic: italic;
     
@@ -67,7 +69,7 @@ button {
 body {
   font-family: var(--font-nunito);
   color: var(--color-grey-0);
-  background-color: var(--color-grey-2);
+  background-color: var(--color-grey-4);
 }
 
 /* ------------------------------- TYPOGRAPHY ------------------------------- */
@@ -76,6 +78,9 @@ h2,
 h3 {
   font-weight: var(--font-weight-700);
   font-size: var(--title-size-1);
+}
+.font-size-0 {
+  font-size: var(--font-size-0);
 }
 
 .font-size-1 {
@@ -86,6 +91,10 @@ h3 {
   font-size: var(--font-size-2);
 }
 
+.font-size-3 {
+  font-size: var(--font-size-3);
+}
+
 .font-bold {
   font-weight: var(--font-weight-700);
 }
@@ -94,11 +103,23 @@ h3 {
   color: var(--color-primary);
 }
 
+.font-color-gray-0 {
+  color: var(--color-grey-0);
+}
+
 .font-color-gray-1 {
   color: var(--color-grey-1);
 }
 
-.font-color-gray-0 {
-  color: var(--color-grey-0);
+.font-color-gray-2 {
+  color: var(--color-grey-2);
+}
+
+.font-color-gray-3 {
+  color: var(--color-grey-3);
+}
+
+.font-color-gray-4 {
+  color: var(--color-grey-4);
 }`;
 export { GlobalStylesAndReset };

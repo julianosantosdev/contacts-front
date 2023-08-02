@@ -19,7 +19,6 @@ const UserContext = createContext<IUserContext>({} as IUserContext);
 const UserProvider = ({ children }: IProviderProps) => {
   const navigate = useNavigate();
 
-  /* -------------------------------- REGISTER -------------------------------- */
   const submitRegisterForm: SubmitHandler<IRegisterData> = async (
     loginFormData: IRegisterData
   ) => {
@@ -34,15 +33,11 @@ const UserProvider = ({ children }: IProviderProps) => {
         navigate('/login');
       }, 2000);
     } catch (error) {
-      error as AxiosError<string>;
       const requestError = error as AxiosError<IAxiosErrorMessage>;
-      console.log(requestError);
-
       toast.error(requestError.response?.data.message);
     }
   };
 
-  /* ---------------------------------- LOGIN --------------------------------- */
   const submitLoginForm: SubmitHandler<ILoginData> = async (
     loginFormData: ILoginData
   ) => {
@@ -72,23 +67,30 @@ const UserProvider = ({ children }: IProviderProps) => {
         navigate('/dashboard');
       }, 2000);
     } catch (error) {
-      error as AxiosError<string>;
-      toast.error(`Algo deu errado, confira as credenciais informadas`);
+      const requestError = error as AxiosError<IAxiosErrorMessage>;
+      toast.error(requestError.response?.data.message);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('@KontaktsUserData');
+    localStorage.removeItem('@KontaktsToken');
+
+    navigate('/login');
+    toast.success('Logout realizado com sucesso!');
   };
 
   return (
     <UserContext.Provider
       value={{
         submitLoginForm,
-        submitRegisterForm
+        submitRegisterForm,
+        handleLogout
       }}
     >
       {children}
     </UserContext.Provider>
   );
-
-  /* --------------------------------- LOGOUT --------------------------------- */
 };
 
 export { UserContext, UserProvider };

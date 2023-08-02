@@ -21,11 +21,7 @@ const Fieldset = styled.fieldset`
     transition: 300ms;
     box-sizing: border-box;
     font-family: var(--font-nunito);
-    font-size: var(--font-size-0);
-    :disabled {
-      background-color: red;
-    }
-
+    font-size: var(--font-size-2);
 
     &:focus {
       border: 1px solid var(--color-grey-0);

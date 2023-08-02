@@ -1,7 +1,7 @@
 function TitleLogo() {
   return (
     <>
-      <h1 className='font-color-primary'>Kontakts</h1>
+      <h1 className='font-color-primary font-size-0'>Kontakts</h1>
     </>
   );
 }

@@ -19,6 +19,7 @@ interface ICreateUserRespose {
 interface IUserContext {
   submitLoginForm: SubmitHandler<ILoginData>;
   submitRegisterForm: SubmitHandler<IRegisterData>;
+  handleLogout: () => void;
 }
 
 interface IAxiosErrorMessage {
