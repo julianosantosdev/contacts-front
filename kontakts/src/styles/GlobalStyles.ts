@@ -52,7 +52,8 @@ button {
     --font-weight-400: 400;
 
     --title-size-1: 1rem;
-
+    
+    --font-size-0: 1.25rem
     --font-size-1: 1rem;
     --font-size-2: 0.750rem;
 

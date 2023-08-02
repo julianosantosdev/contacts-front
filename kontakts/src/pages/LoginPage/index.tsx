@@ -1,16 +1,16 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { TitleLogo } from '../../components/TitleLogo';
 import { SectionTemplate } from '../../styles/SectionTemplate';
 import { Main } from './styles';
 import { Input } from '../../components/Inputs';
 import loginSchema, { ILoginData } from './shema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ButtonYellow } from '../../styles/Button';
-import { api } from '../../services/api.service';
-import { ITokenResponse } from '../../contexts/UserContext/types';
-import { AxiosError } from 'axios';
+import { ButtonYellow, LinkStyledtoRegister } from '../../styles/Button';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 
 const LoginPage = () => {
+  const { submitLoginForm } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -19,16 +19,6 @@ const LoginPage = () => {
     resolver: zodResolver(loginSchema)
   });
 
-  const submitLoginForm: SubmitHandler<ILoginData> = async (
-    loginFormData: ILoginData
-  ) => {
-    try {
-      const response = await api.post<ITokenResponse>('/login', loginFormData);
-      console.log(response);
-    } catch (error) {
-      error as AxiosError<string>;
-    }
-  };
   return (
     <>
       <Main>
@@ -56,6 +46,9 @@ const LoginPage = () => {
               />
               <ButtonYellow>Entrar</ButtonYellow>
             </form>
+            <LinkStyledtoRegister to={'/register'}>
+              Não tenho conta
+            </LinkStyledtoRegister>
           </div>
         </SectionTemplate>
       </Main>

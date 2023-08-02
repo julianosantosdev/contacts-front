@@ -13,6 +13,8 @@ const genericButton = css`
   padding-bottom: 0.5rem;
   border: none;
   transition: 300ms;
+  font-size: var(--font-size-0);
+
 `;
 
 const Button = styled.button`

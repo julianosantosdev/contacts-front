@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import LoginPage from '../pages/loginPage';
-import DashboardPage from '../pages/dashboardPage';
-import RegisterPage from '../pages/registerPage';
+import LoginPage from '../pages/LoginPage';
+import DashboardPage from '../pages/DashboardPage';
+import RegisterPage from '../pages/RegisterPage';
 
 const AppRoutes = () => {
   return (

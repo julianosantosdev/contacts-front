@@ -4,7 +4,7 @@ const loginSchema = z.object({
   email: z.string().email('Insira seu email'),
   password: z
     .string()
-    .min(4, 'Senha deve ter mais de 8 caracteres')
+    .min(4, 'Senha deve ter mais de 4 caracteres')
     .nonempty('Insira sua senha')
 });
 
