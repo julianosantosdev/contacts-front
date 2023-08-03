@@ -1,5 +1,7 @@
+import { ContactsContext } from '../../../contexts/ContactsContext';
+import { ModalContext } from '../../../contexts/ModalContext';
 import { ContactCardLi } from './styles';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 
 interface IContactCardProps {
   id: number;
@@ -7,15 +9,15 @@ interface IContactCardProps {
   createdAt: string;
 }
 
-const ContactCard: FC<IContactCardProps> = ({ fullName, createdAt }) => {
-  //   const {handleModal } = useContext(ModalContext)
-  //   const {getTechDetails} = useContext(TechContext)
+const ContactCard: FC<IContactCardProps> = ({ fullName, createdAt, id }) => {
+  const { handleShowModal } = useContext(ModalContext);
+  const { getContactDetails } = useContext(ContactsContext);
 
   return (
     <ContactCardLi
       onClick={() => {
-        //   handleModal("edit")
-        //   getTechDetails(techName)
+        handleShowModal('showContact');
+        getContactDetails(id);
       }}
     >
       <h3>{fullName}</h3>

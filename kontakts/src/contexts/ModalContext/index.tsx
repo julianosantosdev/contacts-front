@@ -16,7 +16,12 @@ const ModalProvider = ({ children }: iModalContextProps) => {
 
   return (
     <ModalContext.Provider
-      value={{ showModal, setShowModal, handleShowModal, handleCloseModal }}
+      value={{
+        showModal,
+        setShowModal,
+        handleShowModal,
+        handleCloseModal
+      }}
     >
       {children}
     </ModalContext.Provider>

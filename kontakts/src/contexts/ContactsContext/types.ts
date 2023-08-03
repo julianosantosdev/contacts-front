@@ -1,3 +1,7 @@
+import { SubmitHandler } from 'react-hook-form';
+import { ICreateFormContact } from '../../components/Modal/CreateContact/createContactSchema';
+import { IFullName } from '../../components/Modal/EditContact/EditContactFields/EditName';
+
 interface IContactFullName {
   id: number;
   fullName: string;
@@ -37,6 +41,11 @@ interface IContact {
 interface IContactsContext {
   userContactsListFromApi: () => Promise<void>;
   contactsList: Array<IContact>;
+  handleCreateContact: SubmitHandler<ICreateFormContact>;
+  getContactDetails: (id: number) => void;
+  contactDetails: IContact;
+  handleUpdateContactName: SubmitHandler<IFullName>;
+  handleDeleteContact: () => void;
 }
 
 export type { IContactFullName, IContact, IContactsContext };

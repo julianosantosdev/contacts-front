@@ -36,7 +36,7 @@ const DashboardPage = () => {
         <div className='header__userInfo'>
           <Container>
             <div className='dashboard__userDetails'>
-              <h2>Bem-vindo, {userData.id}</h2>
+              <h2>Bem-vindo, {userData.fullName}</h2>
               <p className='font-size-2 font-color-gray-1'>{`Usuário desde ${userData.createdAt}`}</p>
               <ButtonGray
                 onClick={() => handleShowModal('edit')}
@@ -52,14 +52,14 @@ const DashboardPage = () => {
       <main>
         <Container>
           <SectionDashBoard>
-          <ButtonGray
-            onClick={() => {
-              handleShowModal("create");
-            }}
-            className="font-bold font-size-2"
-          >
-            Criar Contato
-          </ButtonGray>
+            <ButtonGray
+              onClick={() => {
+                handleShowModal('create');
+              }}
+              className='font-bold font-size-2'
+            >
+              Criar Kontato
+            </ButtonGray>
             <CardsList />
           </SectionDashBoard>
         </Container>

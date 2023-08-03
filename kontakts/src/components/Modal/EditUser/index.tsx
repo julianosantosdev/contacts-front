@@ -20,39 +20,35 @@ function EditUser() {
   } = useForm<IUpdataUserData>({
     resolver: zodResolver(UpdateUserSchema)
   });
-
   return (
     <>
       <form onSubmit={handleSubmit(handlePatchUser)}>
         <Input
           name={'fullName'}
           label={'Nome'}
-          placeholder={'Seu nome'}
+          placeholder={userData.fullName}
           type={'text'}
           register={register('fullName')}
           errors={errors.fullName || undefined}
-          value={userData.fullName}
         />
         <Input
           name={'email'}
           label={'E-mail'}
-          placeholder={'Seu e-mail'}
+          placeholder={userData.email}
           type={'text'}
           register={register('email')}
           errors={errors.email || undefined}
-          value={userData.email}
         />
         <Input
           name={'phone'}
           label={'Telefone'}
-          placeholder={'Seu telefone'}
+          placeholder={userData.phone}
           type={'text'}
           register={register('phone')}
           errors={errors.phone || undefined}
-          value={userData.phone}
         />
         <div className='form__buttonsContainer'>
-          <ButtonYellow type='submit'>Salvar Alterações</ButtonYellow>
+          <ButtonYellow type='submit'>Salvar</ButtonYellow>
           <ButtonYellow type='button' onClick={handleDeleteUser}>
             Delete
           </ButtonYellow>

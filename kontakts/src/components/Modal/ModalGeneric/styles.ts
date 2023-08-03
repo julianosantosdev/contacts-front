@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ModalContainer = styled.section`
   min-width: 100vw;
@@ -58,6 +58,21 @@ const ModalContainer = styled.section`
         background-color: var(--color-grey-1);
       }
     }
+  }
+
+  @keyframes modalAppear {
+    0% {
+      opacity: 0%;
+    }
+
+    100% {
+      opacity: 100%;
+    }
+  }
+
+  .slideDown {
+    animation: modalAppear;
+    animation-duration: 0.5s;
   }
 `;
 

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const UpdateUserSchema = z
+const updateUserSchema = z
   .object({
     fullName: z.string().max(50).nonempty('Campo obrigatório'),
     email: z.string().email('Campo obrigatório').max(50),
@@ -12,6 +12,6 @@ const UpdateUserSchema = z
   })
   .partial();
 
-type IUpdataUserData = z.infer<typeof UpdateUserSchema>;
-export default UpdateUserSchema;
+type IUpdataUserData = z.infer<typeof updateUserSchema>;
+export default updateUserSchema;
 export type { IUpdataUserData };
