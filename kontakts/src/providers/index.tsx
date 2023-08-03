@@ -1,12 +1,15 @@
 import { ContactsProvider } from '../contexts/ContactsContext';
+import { ModalProvider } from '../contexts/ModalContext';
 import { UserProvider } from '../contexts/UserContext';
 import { IProviderProps } from '../types';
 
 const Providers = ({ children }: IProviderProps) => {
   return (
-    <UserProvider>
-      <ContactsProvider>{children}</ContactsProvider>
-    </UserProvider>
+    <ContactsProvider>
+      <UserProvider>
+        <ModalProvider>{children}</ModalProvider>
+      </UserProvider>
+    </ContactsProvider>
   );
 };
 

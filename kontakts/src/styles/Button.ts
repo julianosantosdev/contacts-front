@@ -34,7 +34,7 @@ const ButtonGray = styled(Button)`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   &:hover {
-    background-color: var(--color-grey-1);
+    background-color: var(--color-primary);
   }
 `;
 

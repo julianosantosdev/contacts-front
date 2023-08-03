@@ -24,7 +24,7 @@ function CardsList() {
     <>
       {userContacts.length === 0 ? (
         <NoContactsStyle>
-          <h2>Nenhuma tecnologia cadastrada</h2>
+          <h2>Cadastre um contato e ele aparecerá aqui</h2>
           <p>Cadastre com o botão + </p>
         </NoContactsStyle>
       ) : (

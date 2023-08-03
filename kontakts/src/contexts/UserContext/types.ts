@@ -1,12 +1,13 @@
 import { SubmitHandler } from 'react-hook-form';
 import { ILoginData } from '../../pages/LoginPage/shema';
 import { IRegisterData } from '../../pages/RegisterPage/schema';
+import { IUpdataUserData } from '../../components/Modal/EditUser/updateUserSchema';
 
 interface ITokenResponse {
   token: string;
 }
 
-interface ICreateUserRespose {
+interface ICreateUserResponse {
   id: number;
   fullName: string;
   email: string;
@@ -20,6 +21,10 @@ interface IUserContext {
   submitLoginForm: SubmitHandler<ILoginData>;
   submitRegisterForm: SubmitHandler<IRegisterData>;
   handleLogout: () => void;
+  handlePatchUser: SubmitHandler<IUpdataUserData>;
+  handleDeleteUser: () => Promise<void>;
+  retrieveUser: () => Promise<void>;
+  userData: ICreateUserResponse;
 }
 
 interface IAxiosErrorMessage {
@@ -28,7 +33,7 @@ interface IAxiosErrorMessage {
 
 export type {
   ITokenResponse,
-  ICreateUserRespose,
+  ICreateUserResponse,
   IUserContext,
   IAxiosErrorMessage
 };

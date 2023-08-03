@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import {
   IAxiosErrorMessage,
-  ICreateUserRespose,
+  ICreateUserResponse,
   ITokenResponse,
   IUserContext
 } from './types';
@@ -13,18 +13,26 @@ import { SubmitHandler } from 'react-hook-form';
 import { IProviderProps } from '../../types';
 import { toast } from 'react-toastify';
 import { IRegisterData } from '../../pages/RegisterPage/schema';
+import { IUpdataUserData } from '../../components/Modal/EditUser/updateUserSchema';
 
 const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IProviderProps) => {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState({} as ICreateUserResponse);
+
+  // const userData: ICreateUserResponse = JSON.parse(
+  //   localStorage.getItem('@KontaktsUserData') || '{}'
+  // );
+
+  const userToken: string | null = localStorage.getItem('@KontaktsToken');
 
   const submitRegisterForm: SubmitHandler<IRegisterData> = async (
     loginFormData: IRegisterData
   ) => {
     try {
       const registerResponse: AxiosResponse =
-        await api.post<ICreateUserRespose>('/users', loginFormData);
+        await api.post<ICreateUserResponse>('/users', loginFormData);
 
       if (registerResponse.status === 201) {
         toast.success('Usuário criado com sucesso!');
@@ -50,16 +58,6 @@ const UserProvider = ({ children }: IProviderProps) => {
       const token: string = loginResponse.data.token || undefined;
 
       if (loginResponse.status === 200) {
-        const userDataRequest = await api.get('/users', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-
-        localStorage.setItem(
-          '@KontaktsUserData',
-          JSON.stringify(userDataRequest.data)
-        );
         toast.success('Você está logado');
       }
       localStorage.setItem('@KontaktsToken', token);
@@ -72,6 +70,15 @@ const UserProvider = ({ children }: IProviderProps) => {
     }
   };
 
+  const retrieveUser = async () => {
+    const userDataRequest = await api.get('/users', {
+      headers: {
+        Authorization: `Bearer ${userToken}`
+      }
+    });
+    setUserData(userDataRequest.data);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('@KontaktsUserData');
     localStorage.removeItem('@KontaktsToken');
@@ -80,12 +87,58 @@ const UserProvider = ({ children }: IProviderProps) => {
     toast.success('Logout realizado com sucesso!');
   };
 
+  const handlePatchUser: SubmitHandler<IUpdataUserData> = async (
+    loginFormData
+  ) => {
+    try {
+      const patchResponse: AxiosResponse = await api.patch<
+        Partial<IRegisterData>
+      >(`/users/${userData.id}`, loginFormData, {
+        headers: {
+          Authorization: `Bearer ${userToken}`
+        }
+      });
+
+      if (patchResponse.status === 200) {
+        retrieveUser();
+        toast.success('Usuário ataulizado com sucesso!');
+      }
+    } catch (error) {
+      const requestError = error as AxiosError<IAxiosErrorMessage>;
+      toast.error(requestError.response?.data.message);
+    }
+  };
+
+  const handleDeleteUser = async () => {
+    try {
+      const deleteResponse: AxiosResponse = await api.delete(
+        `/users/${userData.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`
+          }
+        }
+      );
+
+      if (deleteResponse.status === 204) {
+        handleLogout;
+      }
+    } catch (error) {
+      const requestError = error as AxiosError<IAxiosErrorMessage>;
+      toast.error(requestError.response?.data.message);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
         submitLoginForm,
         submitRegisterForm,
-        handleLogout
+        handleLogout,
+        handlePatchUser,
+        handleDeleteUser,
+        retrieveUser,
+        userData
       }}
     >
       {children}
