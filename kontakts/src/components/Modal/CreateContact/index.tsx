@@ -10,9 +10,6 @@ import {
 import { ContactsContext } from '../../../contexts/ContactsContext';
 
 const CreateContact = () => {
-  // const { techDetails, submitTechChanges, levelToSelect, deleteUserTech } =
-  //   useContext(TechContext);
-  // const { title } = techDetails;
   const { handleCreateContact } = useContext(ContactsContext);
 
   const {
