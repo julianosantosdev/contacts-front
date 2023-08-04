@@ -7,9 +7,6 @@ import { useForm } from 'react-hook-form';
 import UpdateUserSchema, { IUpdataUserData } from './updateUserSchema';
 
 function EditUser() {
-  // const { techDetails, submitTechChanges, levelToSelect, deleteUserTech } =
-  //   useContext(TechContext);
-  // const { title } = techDetails;
   const { handlePatchUser, handleDeleteUser, userData } =
     useContext(UserContext);
 

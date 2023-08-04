@@ -81,7 +81,6 @@ const ContactsProvider = ({ children }: IProviderProps) => {
           userContactsListFromApi();
           toast.success('Usuário criado com sucesso!');
         }
-        // setFilteredProducts(productsRequest.data);
       } catch (error) {
         const requestError = error as AxiosError<IAxiosErrorMessage>;
         toast.error(requestError.response?.data.message);
