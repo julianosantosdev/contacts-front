@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const ModalContainer = styled.section`
-  min-width: 100vw;
-  min-height: 100vh;
-  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
   backdrop-filter: blur(5px);
   display: flex;
   align-items: center;

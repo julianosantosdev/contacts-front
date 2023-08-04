@@ -21,10 +21,6 @@ const UserProvider = ({ children }: IProviderProps) => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({} as ICreateUserResponse);
 
-  // const userData: ICreateUserResponse = JSON.parse(
-  //   localStorage.getItem('@KontaktsUserData') || '{}'
-  // );
-
   const userToken: string | null = localStorage.getItem('@KontaktsToken');
 
   const submitRegisterForm: SubmitHandler<IRegisterData> = async (
@@ -57,13 +53,12 @@ const UserProvider = ({ children }: IProviderProps) => {
 
       const token: string = loginResponse.data.token || undefined;
 
-      if (loginResponse.status === 200) {
-        toast.success('Você está logado');
-      }
+      toast.success('Você está logado');
+
       localStorage.setItem('@KontaktsToken', token);
       setTimeout(() => {
         navigate('/dashboard');
-      }, 2000);
+      }, 500);
     } catch (error) {
       const requestError = error as AxiosError<IAxiosErrorMessage>;
       toast.error(requestError.response?.data.message);

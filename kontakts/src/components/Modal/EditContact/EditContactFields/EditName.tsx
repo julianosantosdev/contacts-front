@@ -11,7 +11,7 @@ const fullNameSchema = z.object({
 });
 export type IFullName = z.infer<typeof fullNameSchema>;
 
-const EditName = () => {
+const EditContactName = () => {
   const { contactDetails, handleUpdateContactName } =
     useContext(ContactsContext);
   const {
@@ -40,4 +40,4 @@ const EditName = () => {
   );
 };
 
-export { EditName };
+export { EditContactName };

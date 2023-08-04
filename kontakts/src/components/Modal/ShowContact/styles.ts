@@ -5,6 +5,10 @@ const ContactDetails = styled.section`
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  p {
+    font-size: var(--font-size-2);
+  }
 `;
 
 export default ContactDetails;

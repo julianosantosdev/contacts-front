@@ -4,13 +4,20 @@ import { api } from '../../services/api.service';
 import { AxiosError, AxiosResponse } from 'axios';
 import { IAxiosErrorMessage } from '../UserContext/types';
 import { toast } from 'react-toastify';
-import { IContact, IContactsContext } from './types';
+import {
+  IContact,
+  IContactEmails,
+  IContactPhones,
+  IContactsContext
+} from './types';
 import { SubmitHandler } from 'react-hook-form';
 import {
   ICreateContact,
   ICreateFormContact
 } from '../../components/Modal/CreateContact/createContactSchema';
 import { IFullName } from '../../components/Modal/EditContact/EditContactFields/EditName';
+import { IContactEmail } from '../../components/Modal/EditContact/EditContactFields/EditEmail';
+import { IEditContactPhone } from '../../components/Modal/EditContact/EditContactFields/EditPhone';
 
 const ContactsContext = createContext<IContactsContext>({} as IContactsContext);
 
@@ -27,14 +34,20 @@ const ContactsProvider = ({ children }: IProviderProps) => {
   };
 
   const userContactsListFromApi = async () => {
+    const token = localStorage.getItem('@KontaktsToken') || null;
+
     if (token !== null) {
       try {
         const contactsListRequest = await api.get<Array<IContact>>(
           '/contacts',
-          headersAuth
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
         );
+
         setContactsList(contactsListRequest.data);
-        // setFilteredProducts(productsRequest.data);
       } catch (error) {
         const requestError = error as AxiosError<IAxiosErrorMessage>;
         toast.error(requestError.response?.data.message);
@@ -64,7 +77,6 @@ const ContactsProvider = ({ children }: IProviderProps) => {
 
         if (newContactResponse.status === 201) {
           userContactsListFromApi();
-          handle
           toast.success('Usuário criado com sucesso!');
         }
         // setFilteredProducts(productsRequest.data);
@@ -105,6 +117,52 @@ const ContactsProvider = ({ children }: IProviderProps) => {
     }
   };
 
+  const handleUpdateContactEmail: SubmitHandler<IContactEmail> = async (
+    contactNewEmail
+  ) => {
+    if (token !== null) {
+      try {
+        const updateEmailResponse: AxiosResponse =
+          await api.patch<IContactEmails>(
+            `/contacts/email/${contactDetails.emails[0].id}`,
+            contactNewEmail,
+            headersAuth
+          );
+
+        if (updateEmailResponse.status === 200) {
+          userContactsListFromApi();
+          toast.success('Email atualizado');
+        }
+      } catch (error) {
+        const requestError = error as AxiosError<IAxiosErrorMessage>;
+        toast.error(requestError.response?.data.message);
+      }
+    }
+  };
+
+  const handleUpdateContactPhone: SubmitHandler<IEditContactPhone> = async (
+    contactNewEmail
+  ) => {
+    if (token !== null) {
+      try {
+        const updatePhoneResponse: AxiosResponse =
+          await api.patch<IContactPhones>(
+            `/contacts/phone/${contactDetails.phones[0].id}`,
+            contactNewEmail,
+            headersAuth
+          );
+
+        if (updatePhoneResponse.status === 200) {
+          userContactsListFromApi();
+          toast.success('Email atualizado');
+        }
+      } catch (error) {
+        const requestError = error as AxiosError<IAxiosErrorMessage>;
+        toast.error(requestError.response?.data.message);
+      }
+    }
+  };
+
   const handleDeleteContact = async () => {
     if (token !== null) {
       try {
@@ -133,7 +191,9 @@ const ContactsProvider = ({ children }: IProviderProps) => {
         getContactDetails,
         contactDetails,
         handleUpdateContactName,
-        handleDeleteContact
+        handleDeleteContact,
+        handleUpdateContactEmail,
+        handleUpdateContactPhone
       }}
     >
       {children}

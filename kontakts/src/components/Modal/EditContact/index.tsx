@@ -1,14 +1,15 @@
-import { EditName } from './EditContactFields/EditName';
+import { EditContactEmail } from './EditContactFields/EditEmail';
+import { EditContactName } from './EditContactFields/EditName';
+import { EditContactPhone } from './EditContactFields/EditPhone';
 import StyledSection from './styles';
 
 const EditContact = () => {
-  // const { techDetails, submitTechChanges, levelToSelect, deleteUserTech } =
-  //   useContext(TechContext);
-  // const { title } = techDetails;
   return (
     <>
       <StyledSection>
-        <EditName />
+        <EditContactName />
+        <EditContactEmail />
+        <EditContactPhone />
       </StyledSection>
     </>
   );

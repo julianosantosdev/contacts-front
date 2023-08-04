@@ -8,14 +8,12 @@ import {
   createContactFormSchema
 } from './createContactSchema';
 import { ContactsContext } from '../../../contexts/ContactsContext';
-import { ModalContext } from '../../../contexts/ModalContext';
 
 const CreateContact = () => {
   // const { techDetails, submitTechChanges, levelToSelect, deleteUserTech } =
   //   useContext(TechContext);
   // const { title } = techDetails;
   const { handleCreateContact } = useContext(ContactsContext);
-  const { handleCloseModal } = useContext(ModalContext);
 
   const {
     register,
@@ -26,11 +24,7 @@ const CreateContact = () => {
   });
   return (
     <>
-      <form
-        onSubmit={() => {
-          handleSubmit(handleCreateContact);
-        }}
-      >
+      <form onSubmit={handleSubmit(handleCreateContact)}>
         <Input
           name={'fullName'}
           label={'Nome'}
