@@ -118,6 +118,7 @@ const UserProvider = ({ children }: IProviderProps) => {
       if (deleteResponse.status === 204) {
         handleLogout;
         navigate('/login');
+        toast.success('Adeus =( ... Sua conta foi deletada!');
       }
     } catch (error) {
       const requestError = error as AxiosError<IAxiosErrorMessage>;
