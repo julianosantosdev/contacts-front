@@ -12,6 +12,6 @@ export const Toastfy = () => (
     pauseOnFocusLoss={false}
     draggable
     pauseOnHover={false}
-    theme='light'
+    theme='colored'
   />
 );

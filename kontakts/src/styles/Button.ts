@@ -14,7 +14,6 @@ const genericButton = css`
   border: none;
   transition: 300ms;
   font-size: var(--font-size-0);
-
 `;
 
 const Button = styled.button`
@@ -35,6 +34,26 @@ const ButtonGray = styled(Button)`
   padding-right: 1.5rem;
   &:hover {
     background-color: var(--color-primary);
+  }
+`;
+
+const ButtonSave = styled(Button)`
+  background-color: var(--color-grey-5);
+  font-size: small;
+  bottom: 70px;
+  left: 275px;
+  &:hover {
+    color: var(--color-primary);
+  }
+  padding: 0%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  .saveBtn {
+    width: 32px;
+    height: 24px;
+    
   }
 `;
 
@@ -61,6 +80,7 @@ export {
   Button,
   ButtonYellow,
   ButtonGray,
+  ButtonSave,
   LinkStyledtoRegister,
   LinkStyledToLogin
 };

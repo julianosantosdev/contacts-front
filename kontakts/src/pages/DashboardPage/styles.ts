@@ -44,9 +44,16 @@ const SectionDashBoard = styled.section`
   width: 85%;
   border-radius: 4px;
   margin: 32px 0;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--color-grey-3);
+  padding: 10px 0 10px 0;
+
+  button {
+    background-color: var(--color-secondary);
+  }
 `;
 
 export { Container, SectionDashBoard, Header };

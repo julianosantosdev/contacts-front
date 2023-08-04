@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../../../Inputs';
-import { Button } from '../../../../styles/Button';
+import { ButtonSave } from '../../../../styles/Button';
+import { BiSave } from 'react-icons/bi';
 
 const updateContactEmailSchema = z.object({
   email: z.string().email('Informe um email válido')
@@ -24,6 +25,8 @@ const EditContactEmail = () => {
   return (
     <>
       <form onSubmit={handleSubmit(handleUpdateContactEmail)}>
+        <h4>Emails</h4>
+
         <Input
           name={'email'}
           label={'E-mail'}
@@ -32,9 +35,10 @@ const EditContactEmail = () => {
           register={register('email')}
           errors={errors.email || undefined}
         />
-        <Button className='button__create' type='submit'>
-          Salvar
-        </Button>
+        <ButtonSave className='button__create' type='submit'>
+          <BiSave className={"saveBtn"}/>
+          Atualizar
+        </ButtonSave>
       </form>
     </>
   );

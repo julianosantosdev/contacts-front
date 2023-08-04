@@ -14,8 +14,9 @@ const ModalContainer = styled.section`
     max-height: fit-content;
     min-height: 16rem;
     width: 85%;
-    background-color: var(--color-grey-3);
+    background-color: var(--color-grey-4);
     border-radius: 4px;
+
   }
 
   .modalHeader {
@@ -55,7 +56,7 @@ const ModalContainer = styled.section`
 
       button:nth-child(2) {
         width: 45%;
-        background-color: var(--color-grey-1);
+        background-color: var(--color-negative)
       }
     }
   }

@@ -6,6 +6,7 @@ import { IAxiosErrorMessage } from '../UserContext/types';
 import { toast } from 'react-toastify';
 import {
   IContact,
+  IContactAddresses,
   IContactEmails,
   IContactPhones,
   IContactsContext
@@ -18,6 +19,7 @@ import {
 import { IFullName } from '../../components/Modal/EditContact/EditContactFields/EditName';
 import { IContactEmail } from '../../components/Modal/EditContact/EditContactFields/EditEmail';
 import { IEditContactPhone } from '../../components/Modal/EditContact/EditContactFields/EditPhone';
+import { IUpdateContactAddress } from '../../components/Modal/EditContact/EditContactFields/EditAddress';
 
 const ContactsContext = createContext<IContactsContext>({} as IContactsContext);
 
@@ -163,6 +165,29 @@ const ContactsProvider = ({ children }: IProviderProps) => {
     }
   };
 
+  const handleUpdateAddress: SubmitHandler<IUpdateContactAddress> = async (
+    contactNewEmail
+  ) => {
+    if (token !== null) {
+      try {
+        const updateAddresssResponse: AxiosResponse =
+          await api.patch<IContactAddresses>(
+            `/address/${contactDetails.addresses[0].id}`,
+            contactNewEmail,
+            headersAuth
+          );
+
+        if (updateAddresssResponse.status === 200) {
+          userContactsListFromApi();
+          toast.success('Endereço atualizado');
+        }
+      } catch (error) {
+        const requestError = error as AxiosError<IAxiosErrorMessage>;
+        toast.error(requestError.response?.data.message);
+      }
+    }
+  };
+
   const handleDeleteContact = async () => {
     if (token !== null) {
       try {
@@ -193,7 +218,8 @@ const ContactsProvider = ({ children }: IProviderProps) => {
         handleUpdateContactName,
         handleDeleteContact,
         handleUpdateContactEmail,
-        handleUpdateContactPhone
+        handleUpdateContactPhone,
+        handleUpdateAddress
       }}
     >
       {children}

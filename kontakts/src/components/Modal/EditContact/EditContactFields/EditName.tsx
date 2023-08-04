@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
-import { Button } from '../../../../styles/Button';
+import { ButtonSave } from '../../../../styles/Button';
 import { Input } from '../../../Inputs';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useContext } from 'react';
 import { ContactsContext } from '../../../../contexts/ContactsContext';
+import { BiSave } from 'react-icons/bi';
 
 const fullNameSchema = z.object({
   fullName: z.string().max(50).nonempty('Campo obrigatório')
@@ -24,6 +25,7 @@ const EditContactName = () => {
   return (
     <>
       <form onSubmit={handleSubmit(handleUpdateContactName)}>
+        <h4>Dados do contato</h4>
         <Input
           name={'fullName'}
           label={'Nome'}
@@ -32,9 +34,10 @@ const EditContactName = () => {
           register={register('fullName')}
           errors={errors.fullName || undefined}
         />
-        <Button className='button__create' type='submit'>
-          Salvar
-        </Button>
+        <ButtonSave className='button__create' type='submit'>
+          <BiSave className={"saveBtn"}/>
+          Atualizar
+        </ButtonSave>
       </form>
     </>
   );

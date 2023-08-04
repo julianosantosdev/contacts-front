@@ -24,7 +24,7 @@ const Fieldset = styled.fieldset`
     font-size: var(--font-size-2);
 
     &:focus {
-      border: 1px solid var(--color-grey-0);
+      border: 1px solid var(--color-primary);
       transition: 300ms;
     }
   }

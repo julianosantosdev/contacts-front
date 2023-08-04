@@ -7,12 +7,14 @@ import { useContext } from 'react';
 import { ContactsContext } from '../../../contexts/ContactsContext';
 import { ShowContact } from '../ShowContact';
 import { EditContact } from '../EditContact';
+import { ModalContext } from '../../../contexts/ModalContext';
 
 const GenericModal = ({ type }: IGenericModalProps) => {
   const { contactDetails } = useContext(ContactsContext);
-  // const { ref } = useContext(ModalContext);
+  const { ref } = useContext(ModalContext);
+
   return (
-    <ModalContainer>
+    <ModalContainer ref={ref}>
       <div className='modalBody slideDown'>
         {(() => {
           switch (type) {

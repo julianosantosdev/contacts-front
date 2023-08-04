@@ -15,6 +15,7 @@ interface iModalContext {
   showModal: string | null;
   handleShowModal: (type: string | null) => void;
   handleCloseModal: () => void;
+  ref: React.MutableRefObject<null>;
 }
 
 interface IInput {

@@ -3,6 +3,7 @@ import { ICreateFormContact } from '../../components/Modal/CreateContact/createC
 import { IFullName } from '../../components/Modal/EditContact/EditContactFields/EditName';
 import { IContactEmail } from '../../components/Modal/EditContact/EditContactFields/EditEmail';
 import { IEditContactPhone } from '../../components/Modal/EditContact/EditContactFields/EditPhone';
+import { IUpdateContactAddress } from '../../components/Modal/EditContact/EditContactFields/EditAddress';
 
 interface IContactFullName {
   id: number;
@@ -50,6 +51,7 @@ interface IContactsContext {
   handleDeleteContact: () => void;
   handleUpdateContactEmail: SubmitHandler<IContactEmail>;
   handleUpdateContactPhone: SubmitHandler<IEditContactPhone>;
+  handleUpdateAddress: SubmitHandler<IUpdateContactAddress>;
 }
 
 export type {
@@ -57,5 +59,6 @@ export type {
   IContact,
   IContactsContext,
   IContactEmails,
-  IContactPhones
+  IContactPhones,
+  IContactAddresses
 };

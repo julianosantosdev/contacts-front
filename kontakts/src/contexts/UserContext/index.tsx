@@ -117,6 +117,7 @@ const UserProvider = ({ children }: IProviderProps) => {
 
       if (deleteResponse.status === 204) {
         handleLogout;
+        navigate('/login');
       }
     } catch (error) {
       const requestError = error as AxiosError<IAxiosErrorMessage>;

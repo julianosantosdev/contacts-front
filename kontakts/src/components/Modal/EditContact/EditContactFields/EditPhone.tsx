@@ -4,7 +4,8 @@ import { ContactsContext } from '../../../../contexts/ContactsContext';
 import { Input } from '../../../Inputs';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '../../../../styles/Button';
+import { ButtonSave } from '../../../../styles/Button';
+import { BiSave } from 'react-icons/bi';
 
 const updateContactPhoneSchema = z.object({
   phone: z.string().max(20).nonempty('Informe um email válido')
@@ -24,6 +25,8 @@ const EditContactPhone = () => {
   return (
     <>
       <form onSubmit={handleSubmit(handleUpdateContactPhone)}>
+        <h4>Telefones:</h4>
+
         <Input
           name={'phone'}
           label={'Telefone'}
@@ -32,9 +35,10 @@ const EditContactPhone = () => {
           register={register('phone')}
           errors={errors.phone || undefined}
         />
-        <Button className='button__create' type='submit'>
-          Salvar
-        </Button>
+        <ButtonSave className='button__create' type='submit'>
+          <BiSave className={"saveBtn"} />
+          Atualizar
+        </ButtonSave>
       </form>
     </>
   );
