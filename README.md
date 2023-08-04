@@ -27,7 +27,7 @@ Esse comando instala todas as dependências e pacotes necessários para executar
 A aplicação front end entrará em execução e será possível interagir pelo endereço no navegador.
 **LOGIN**: http://localhost:5173/login
 
-**NÃO ESQUEÇA: COPIAR A URL GERADA PELO COMANDO NPM RUN DEN NO ARQUIVO .ENV (FRONTEND_URL) DA CONTACTS_API, _SEM A BARRA DO FINAL_**
+**NÃO ESQUEÇA: COPIAR A URL GERADA PELO COMANDO NPM RUN DEV NO ARQUIVO .ENV (FRONTEND_URL) DA CONTACTS_API, _SEM A BARRA DO FINAL_**
 ![Screenshot from 2023-08-04 13-58-42](https://github.com/julianosantosdev/contacts-front/assets/110478861/c159a35c-5dd8-4bf1-8ce7-23f64e337d8a)
 
 
