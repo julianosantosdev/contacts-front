@@ -14,7 +14,7 @@ Essa é aplicação front-end para ser usada em conjunto com a CONTACTS-API: htt
 - NPM
 - CONTACTS_API configurada e em execução
 
-1) Clone o repositório e dentro da pasta raiz execute o seguinte comando pelo terminal/console/cmd:
+1) Clone o repositório e dentro da pasta do projeto (pasta kontakts) execute o seguinte comando pelo terminal/console/cmd:
 
 `npm install`
 
