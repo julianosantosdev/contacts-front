@@ -9,6 +9,13 @@ const CardListUl = styled.ul`
   width: 100%;
   border-radius: 4px;
   margin: 32px 0;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+  }
 `;
 
 const NoContactsStyle = styled.div`

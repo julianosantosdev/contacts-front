@@ -8,6 +8,7 @@ import { ContactsContext } from '../../../contexts/ContactsContext';
 import { ShowContact } from '../ShowContact';
 import { EditContact } from '../EditContact';
 import { ModalContext } from '../../../contexts/ModalContext';
+import DeleteConfirmation from '../DeleteConfirmation/DeleteConfirmation';
 
 const GenericModal = ({ type }: IGenericModalProps) => {
   const { contactDetails } = useContext(ContactsContext);
@@ -45,6 +46,13 @@ const GenericModal = ({ type }: IGenericModalProps) => {
                 <>
                   <ModalHeader title={contactDetails.fullName.fullName} />
                   <EditContact />
+                </>
+              );
+              case 'delete':
+              return (
+                <>
+                  <ModalHeader title={"AVISO"} />
+                  <DeleteConfirmation />
                 </>
               );
             default:

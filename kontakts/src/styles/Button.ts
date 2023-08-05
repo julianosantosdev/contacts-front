@@ -24,7 +24,8 @@ const ButtonYellow = styled(Button)`
   background-color: var(--color-primary);
   color: var(--color-grey-4);
   &:hover {
-    background-color: var(--color-primary-focus);
+    background-color: var(--color-secondary);
+    color: var(--color-grey-0);
   }
 `;
 

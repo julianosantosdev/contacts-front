@@ -8,10 +8,10 @@ import { z } from 'zod';
 import { BiSave } from 'react-icons/bi';
 
 const contactAddressUpdateSchema = z.object({
-  street: z.string().max(50),
+  street: z.string().max(50).nonempty('Informe a nova rua'),
   number: z.string().max(7).nullable(),
-  city: z.string().max(30),
-  state: z.string().max(2)
+  city: z.string().max(30).nonempty('Informe a nova cidade'),
+  state: z.string().max(2).nonempty('Informe o novo Estado')
 });
 export type IUpdateContactAddress = z.infer<typeof contactAddressUpdateSchema>;
 

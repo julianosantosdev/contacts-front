@@ -103,6 +103,10 @@ h3 {
   color: var(--color-primary);
 }
 
+.font-color-secondary {
+  color: var(--color-secondary);
+}
+
 .font-color-gray-0 {
   color: var(--color-grey-0);
 }

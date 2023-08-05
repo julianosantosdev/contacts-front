@@ -49,7 +49,14 @@ const ContactsProvider = ({ children }: IProviderProps) => {
           }
         );
 
-        setContactsList(contactsListRequest.data);
+        const orderContacts = contactsListRequest.data.sort((a, b) => {
+          if (a.fullName.fullName < b.fullName.fullName) {
+            return -1;
+          }
+          return 1;
+        });
+
+        setContactsList(orderContacts);
       } catch (error) {
         const requestError = error as AxiosError<IAxiosErrorMessage>;
         toast.error(requestError.response?.data.message);
