@@ -5,10 +5,12 @@ import { useContext } from 'react';
 import { UserContext } from '../../../contexts/UserContext';
 import { useForm } from 'react-hook-form';
 import UpdateUserSchema, { IUpdataUserData } from './updateUserSchema';
+import { ModalContext } from '../../../contexts/ModalContext';
 
 function EditUser() {
-  const { handlePatchUser, handleDeleteUser, userData } =
+  const { handlePatchUser, userData } =
     useContext(UserContext);
+  const { handleShowModal } = useContext(ModalContext);
 
   const {
     register,
@@ -46,7 +48,12 @@ function EditUser() {
         />
         <div className='form__buttonsContainer'>
           <ButtonYellow type='submit'>Salvar</ButtonYellow>
-          <ButtonYellow type='button' onClick={handleDeleteUser}>
+          <ButtonYellow
+            type='button'
+            onClick={() => {
+              handleShowModal('delete');
+            }}
+          >
             Delete
           </ButtonYellow>
         </div>
